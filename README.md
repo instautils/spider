@@ -1,7 +1,7 @@
 ## 🕷️ Spider
 > Make a graph network of your followers.
 
-<p align="center"><img width=100% src="https://github.com/instautils/spider/raw/master/resources/neo4j_2.png"></p>
+<p align="center"><img width=100% src="https://github.com/instautils/spider/raw/master/resources/intro.png"></p>
 
 ---
 
@@ -37,5 +37,7 @@ MATCH path = allShortestPaths((me)-[*..4]-(a))
 WITH a, count(b) as c, path WHERE c > 1 RETURN a, path`
 
 ---
+
+<p align="center"><img width=100% src="https://github.com/instautils/spider/raw/master/resources/neo4j_2.png"></p>
 
 <p align="center"><img width=100% src="https://github.com/instautils/spider/raw/master/resources/neo4j_1.png"></p>
