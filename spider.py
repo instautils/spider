@@ -27,6 +27,7 @@ if __name__ == "__main__":
         os.getenv('INSTAGRAM_PASSWORD'),
     )
     current_user = os.getenv('INSTAGRAM_USERNAME')
+    current_gender = 'male'
 
     log_event('info', 'trying to connect to Instagram ...')
     if not instagram.login():
@@ -41,13 +42,13 @@ if __name__ == "__main__":
 
     for follower in followers['users'][:10]:
         username = follower['username']
-        username_id = follower['pk']
+        username_id = follower['pk']        
 
         try:
             image = url_to_image(follower['profile_pic_url'])
-            gender = detector.process(image)
-            graph.add_node(username, gender)
-            graph.add_edge(username, current_user)
+            gender = detector.process(image)            
+            follower['gender'] = gender
+            graph.add_edge(username, gender, current_user, current_gender)
         except Exception as e:
             log_event('warn', 'error on fetching user {} {}'.format(username, e))
             continue
@@ -69,9 +70,8 @@ if __name__ == "__main__":
 
             try:
                 image = url_to_image(target['profile_pic_url'])
-                gender = detector.process(image)
-                graph.add_node(username, gender)
-                graph.add_edge(username, follower['username'])
+                gender = detector.process(image)                
+                graph.add_edge(username, gender, follower['username'], follower['gender'])
             except Exception as e:
                 log_event('warn', 'error on fetching user {} {}'.format(username, e))
                 continue

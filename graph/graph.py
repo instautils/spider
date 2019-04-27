@@ -11,10 +11,10 @@ class Graph:
         tx.merge(node, primary_label='Person', primary_key=('name'))
         tx.commit()
 
-    def add_edge(self, a, b):
-        node_a = Node("Person", name=a)
-        node_b = Node("Person", name=b)
-        rel = Relationship(node_a, "FOLLOW", node_b,)
+    def add_edge(self, username_a, gender_a, username_b, gender_b):
+        node_a = Node("Person", name=username_a, gender=gender_a)
+        node_b = Node("Person", name=username_b, gender=gender_b)
+        rel = Relationship(node_a, "FOLLOW", node_b)
         tx = self.graph.begin()
         tx.merge(rel, primary_label='Person', primary_key=('name'))
         tx.commit()
