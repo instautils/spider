@@ -109,3 +109,4 @@ models/*.dat
 simple_nn/labels/*
 simple_nn/model.nn
 simple_nn/classes.pickle
+simple_nn/bin

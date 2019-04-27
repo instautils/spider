@@ -8,7 +8,7 @@ from keras.layers.convolutional import MaxPooling2D
 from keras.layers.convolutional import Conv2D
 from keras.models import Sequential
 from keras.optimizers import Adam
-from keras.utils.np_utils import to_categorical
+from keras.preprocessing.image import ImageDataGenerator
 from sklearn.model_selection import train_test_split
 
 
@@ -88,8 +88,6 @@ class SmallerVGGNet:
             test_size=0.25,
             random_state=42,
         )
-        trainY = to_categorical(trainY, num_classes=self.classes)
-        testY = to_categorical(testY, num_classes=self.classes)
         self.model.fit(
             trainX,
             trainY,
@@ -130,17 +128,17 @@ class LeNet:
             )
         )
         model.add(Activation("relu"))
-        
+
         model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
-        model.add(Conv2D(50, (5, 5), padding="same"))
+        model.add(Conv2D(50, (5, 5), padding="same"))        
         model.add(Activation("relu"))
 
         model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
         model.add(Flatten())
-        model.add(Dense(500))
+        model.add(Dense(500))        
         model.add(Activation("relu"))
 
-        model.add(Dense(self.classes))        
+        model.add(Dense(self.classes))
         model.add(Activation("softmax"))
 
         return model
@@ -164,14 +162,21 @@ class LeNet:
             test_size=0.25,
             random_state=42,
         )
-        trainY = to_categorical(trainY, num_classes=self.classes)
-        testY = to_categorical(testY, num_classes=self.classes)
-        self.model.fit(
-            trainX,
-            trainY,
+        aug = ImageDataGenerator(
+            rotation_range=30,
+            width_shift_range=0.1,
+            height_shift_range=0.1,
+            shear_range=0.2,
+            zoom_range=0.2,
+            horizontal_flip=True,
+            fill_mode="nearest"
+        )
+        self.model.fit_generator(
+            aug.flow(trainX, trainY, batch_size=self.batch_size),
+            validation_data=(testX, testY),
+            steps_per_epoch=len(trainX) // self.batch_size,
             epochs=self.epoches,
-            batch_size=self.batch_size,
-            verbose=verbose,
+            verbose=1
         )
         return self.model.evaluate(
             testX,
