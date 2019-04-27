@@ -2,3 +2,4 @@ py2neo==4.2.0
 requests==2.21.0
 dlib==19.7.0
 imutils==0.5.2
+workerpool==0.9.4

@@ -3,6 +3,16 @@
 
 <p align="center"><img width=100% src="https://github.com/instautils/spider/raw/master/resources/neo4j_2.png"></p>
 
+---
+
+#### Neo4j Graph Database
+
+> Neo4j is the most popular graph database according to DB-Engines ranking, and the 22ⁿᵈ most popular database overall.
+
+```
+$ docker-compose up
+```
+
 #### Dependencies
 
 ```
