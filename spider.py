@@ -1,6 +1,7 @@
 import os
 import sys
 import time
+from tqdm import tqdm
 from graph import Graph
 from imutils import url_to_image
 from os.path import join as join_path
@@ -19,7 +20,8 @@ if __name__ == "__main__":
         join_path('models', 'dlib_face_recognition_resnet_model_v1.dat'),
         join_path('models', 'gender.pickle'),
     )
-    graph = Graph('')
+    graph = Graph(os.getenv('INSTAGRAM_NEO4J'))    
+    
     instagram = Instagram(
         os.getenv('INSTAGRAM_USERNAME'),
         os.getenv('INSTAGRAM_PASSWORD'),
@@ -36,28 +38,43 @@ if __name__ == "__main__":
     if followers['status'] != 'ok':
         log_event('error', 'invalid Instagram status ' + followers['status'])
         sys.exit(2)
-    
+
     for follower in followers['users'][:10]:
         username = follower['username']
         username_id = follower['pk']
 
-        image = url_to_image(follower['profile_pic_url'])
-        gender = detector.process(image)
-        graph.add_node(username, gender)
-        graph.add_edge(current_user, username)
-
-        targets = instagram.followers(username_id)
-        if targets['status'] != 'ok':
-            log_event(
-                'error',
-                'invalid Instagram status ' + followers['status'],
-            )
+        try:
+            image = url_to_image(follower['profile_pic_url'])
+            gender = detector.process(image)
+            graph.add_node(username, gender)
+            graph.add_edge(username, current_user)
+        except Exception as e:
+            log_event('warn', 'error on fetching user {} {}'.format(username, e))
             continue
 
-        for target in targets:  
-            username = target['username']
-            image = url_to_image(target['profile_pic_url'])
-            gender = detector.process(image)
+        try:
+            targets = instagram.followers(username_id)
+            if targets['status'] != 'ok':
+                log_event(
+                    'error',
+                    'invalid Instagram status ' + followers['status'],
+                )
+                continue
+        except Exception as e:
+            log_event('warn', 'error on fetching followers {}'.format(e))
+            continue
 
-            graph.add_node(username, gender)
-            graph.add_edge(follower['username'], username)
+        for target in tqdm(targets['users']):
+            username = target['username']
+
+            try:
+                image = url_to_image(target['profile_pic_url'])
+                gender = detector.process(image)
+                graph.add_node(username, gender)
+                graph.add_edge(username, follower['username'])
+            except Exception as e:
+                log_event('warn', 'error on fetching user {} {}'.format(username, e))
+                continue
+
+    log_event('info', 'logging out from Instagram ...')
+    instagram.logout()
