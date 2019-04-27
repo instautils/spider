@@ -28,6 +28,14 @@ $ export INSTAGRAM_PASSWORD=''
 $ python spider.py # running with python 2
 ```
 
+
+### NEO4J Example Queries
+
+1. `MATCH (a:Person {gender: 'female'})-[:FOLLOW]->(b:Person) WITH a, collect(b) as collection, count(b) as c WHERE c > 1 RETURN a, collection`
+2. `MATCH (me:Person {name: "aidenzibaei"}), (a:Person {gender: 'female'})-[:FOLLOW]->(b:Person) 
+MATCH path = allShortestPaths((me)-[*..4]-(a))
+WITH a, count(b) as c, path WHERE c > 1 RETURN a, path`
+
 ---
 
 <p align="center"><img width=100% src="https://github.com/instautils/spider/raw/master/resources/neo4j_1.png"></p>
