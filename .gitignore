@@ -102,3 +102,10 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+models/*.pickle
+models/*.dat
+.vscode
+simple_nn/labels/*
+simple_nn/model.nn
+simple_nn/classes.pickle
