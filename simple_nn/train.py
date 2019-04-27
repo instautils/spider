@@ -7,7 +7,7 @@ import numpy as np
 from keras.utils import np_utils
 from keras.preprocessing.image import img_to_array
 from sklearn.preprocessing import LabelEncoder
-from architecture import LeNet, SmallerVGGNet
+from architecture import LeNet, SmallerVGGNet, image_size
 
 
 def read_files(image_files_pattern, limit=100, size=(28, 28)):
@@ -40,9 +40,9 @@ if __name__ == "__main__":
     data, labels, classes = read_files(
         'labels/**/*.jpg',
         limit=2000,
-        size=(128, 128),
+        size=image_size,
     )
-    model = LeNet(width=128, height=128, depth=3, classes=3)
+    model = LeNet(width=image_size[1], height=image_size[0], depth=3, classes=3)
     loss, accuracy = model.fit(data, labels)
     print "loss={:.2f}, accuracy: {:.2f}%".format(loss, accuracy * 100)
 

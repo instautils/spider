@@ -12,6 +12,9 @@ from keras.preprocessing.image import ImageDataGenerator
 from sklearn.model_selection import train_test_split
 
 
+image_size = (128, 128)
+
+
 class SmallerVGGNet:
     def __init__(self, width, height, depth, classes, initialize_learning_rate=1e-3, epoches=100, batch_size=32):
         self.input_shape = (height, width, depth)
@@ -130,12 +133,12 @@ class LeNet:
         model.add(Activation("relu"))
 
         model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
-        model.add(Conv2D(50, (5, 5), padding="same"))        
+        model.add(Conv2D(50, (5, 5), padding="same"))
         model.add(Activation("relu"))
 
         model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
         model.add(Flatten())
-        model.add(Dense(500))        
+        model.add(Dense(500))
         model.add(Activation("relu"))
 
         model.add(Dense(self.classes))
