@@ -14,7 +14,7 @@ class Graph:
     def add_edge(self, a, b):
         node_a = Node("Person", name=a)
         node_b = Node("Person", name=b)
-        rel = Relationship(node_a, "FOLLOW", node_b)
+        rel = Relationship(node_a, "FOLLOW", node_b,)
         tx = self.graph.begin()
-        tx.create(rel)
+        tx.merge(rel, primary_label='Person', primary_key=('name'))
         tx.commit()
