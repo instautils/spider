@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>InstaGraph, Social graph of your Instagram.</title>
+    <meta name="description"
+        content="InstaGraph, Social graph of your Instagram. Create simple and beautiful graph based on you and your followers.">
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,700,700i%7CMaitree:200,300,400,600,700&amp;subset=latin-ext"
+        rel="stylesheet">
+
+    <link rel="stylesheet" type='text/css' media='all' href="static/css/webslides.css">
+    <link rel="stylesheet" type='text/css' media='all' href="static/css/svg-icons.css">
+    <link rel="stylesheet" type='text/css' media='all' href="static/css/instagraph.css">
+
+    <!-- FAVICONS -->
+    <link rel="shortcut icon" sizes="16x16" href="static/images/favicons/favicon.png">
+    <link rel="shortcut icon" sizes="32x32" href="static/images/favicons/favicon-32.png">
+    <link rel="apple-touch-icon icon" sizes="76x76" href="static/images/favicons/favicon-76.png">
+    <link rel="apple-touch-icon icon" sizes="120x120" href="static/images/favicons/favicon-120.png">
+    <link rel="apple-touch-icon icon" sizes="152x152" href="static/images/favicons/favicon-152.png">
+    <link rel="apple-touch-icon icon" sizes="180x180" href="static/images/favicons/favicon-180.png">
+    <link rel="apple-touch-icon icon" sizes="192x192" href="static/images/favicons/favicon-192.png">
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#333333">
+</head>
+
+<body>
+    <div id="particles"></div>
+
+    <main role="main">
+        <article id="webslides">
+            <section class="bg-apple aligncenter">
+                <div class="wrap size-50">
+                    <h1><img class="whitelogo" src="static/images/icons/network.svg"></h1>
+                    <h1>InstaGraph</h1>
+                    <p class="text-intro">Social graph network of your Instagram account.</p>
+                    <p>
+                        By Ahmadreza Zibaei (<a href="https://zibaei.net">https://zibaei.net</a>)
+                        <br />
+                        Special thanks to Prof. Babak Nasiri
+                    </p>
+                </div>
+            </section>
+            <section class="bg-apple">
+                <div class="wrap size-50">
+                    <h1>Social Network Analysis</h1>
+                    <p class="text-intro">is the process of investigating social structures through the use of networks
+                        and graph theory.</p>
+                    <p>It characterizes networked structures in terms of nodes (individual actors, people, or things
+                        within the network) and the ties, edges, or links (relationships or interactions) that connect
+                        them. </p>
+                </div>
+            </section>
+            <section class="bg-apple aligncenter">
+                <div class="wrap size-50">
+                    <h2>Instagram Network Structure</h2>
+                    <p class="text-intro">How to create and draw graph of users ?</p>
+                </div>
+            </section>
+            <section class="bg-apple">
+                <div class="wrap size-50">
+                    <h2>Instagram Network Structure</h2>
+                    <p class="text-intro">How to create and draw graph of users ?</p>
+
+                    <ul>
+                        <li>Every person can follow another person</li>
+                        <li>You follow someone, someone follows you!</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="bg-apple aligncenter">
+                <div class="wrap">
+                    <h3>How to get this kind of data from Instagram ?</h3>
+                    <p class="text-intro">An introduction to crawlers.</p>
+                </div>
+            </section>
+            <section class="bg-apple aligncenter">
+                <div class="wrap">
+                    <h3>Let's create graph network !</h3>
+                    <p class="text-intro">Using <code>sigma.js</code> !</p>
+                </div>
+            </section>
+            <section class="bg-apple aligncenter">
+                <div class="wrap">
+                    <img src="static/images/wheel.png" style="width:30%; max-width:400px">
+                </div>
+            </section>
+            <section class="bg-apple">
+                <div class="wrap">
+                    <h3>A storage for big networks</h3>
+                    <p class="text-intro">What is Graph Database ?</p>
+                    <ul>
+                        <li>Graph database is a database that uses graph structures for semantic queries with nodes,
+                            edges and properties to represent and store data.</li>
+                        <li>Graph databases are part of the NoSQL databases created to address the limitations of the
+                            existing relational databases.</li>
+                        <li>A key concept of the system is the graph (or edge or relationship), which directly relates
+                            data items in the store a collection of nodes of data and edges representing the
+                            relationships between the nodes.</li>
+                        <li>Graph databases hold the relationships between data as a priority.</li>
+                        <li>Querying relationships within a graph database is fast because they are perpetually stored
+                            within the database itself.</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="bg-apple">
+                <div class="wrap">
+                    <h3>An introduction to NEO4J database</h3>
+                    <p class="text-intro">List of queries</p>
+                    <ul>
+                        <li><code>CREATE (a:Person {name: 'Ahmadreza'}) RETURN a</code></li>
+                        <li><code>MERGE (a:Person {name: 'Alireza'}) RETURN a</code></li>
+                        <li><code>START n=node(*) RETURN n;</code></li>
+                        <li><code>MATCH (n) DETACH DELETE n</code></li>
+                        <li><code>MATCH (a:Person {name: 'Ahmadreza'}) DETACH DELETE a;</code></li>
+                        <li><code>MATCH (a:Person {name: 'Ahmadreza'}), (b:Person (name: 'Alireza')) CREATE
+                                (a)-[:KNOWS]->(b)</code></li>
+                        <li><code>MATCH (a:Person {name: 'Ahmadreza'})-[f:FOLLOW]-(b:Person {name: 'Alireza'}) DELETE
+                                f;</code></li>
+                    </ul>
+                </div>
+            </section>
+            <section class="bg-apple">
+                <div class="wrap">
+                    <h3>An introduction to NEO4J database</h3>
+                    <p class="text-intro">Simple data-mining queries:</p>
+                    <ul>
+                        <li><code>MATCH (a:Person {name: "Ahmadreza"}), (b:Person {name: "Alireza"}) MATCH path =
+                                allShortestPaths((a)-[*..4]-(b)) RETURN path</code></li>
+                        <li><code>MATCH (a:Person {name: 'aidenzibaei'})--(other) RETURN count(other);</code></li>
+                        <li><code>MATCH (a:Person)-[:FOLLOW]->(b:Person) WITH a, b WHERE b.name = 'aidenzibaei' RETURN
+                                a, b</code></li>
+                        <li><code>MATCH (a:Person)-[:FOLLOW]->(b:Person) WITH a, collect(b) as collection, count(b) as c
+                                WHERE c > 1 RETURN a, collection</code></li>
+                    </ul>
+                </div>
+            </section>
+            <section class="bg-apple">
+                <div class="wrap">
+                    <h3>An introduction to NEO4J database</h3>
+                    <p class="text-intro">Simple data-mining queries:</p>
+                    <ul>
+                        <li><code>MATCH (a:Person {name: "Ahmadreza"}), (b:Person {name: "Alireza"}) MATCH path =
+                                allShortestPaths((a)-[*..4]-(b)) RETURN path</code></li>
+                        <li><code>MATCH (a:Person {name: 'aidenzibaei'})--(other) RETURN count(other);</code></li>
+                        <li><code>MATCH (a:Person)-[:FOLLOW]->(b:Person) WITH a, b WHERE b.name = 'aidenzibaei' RETURN
+                                a, b</code></li>
+                        <li><code>MATCH (a:Person)-[:FOLLOW]->(b:Person) WITH a, collect(b) as collection, count(b) as c
+                                WHERE c > 1 RETURN a, collection</code></li>
+                    </ul>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <script src="static/js/particles.min.js"></script>
+    <script src="static/js/sigma.min.js"></script>
+    <script src="static/js/webslides.js"></script>
+    <script>
+        var particles = {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#90a4ae"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 5,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 2,
+                        "size_min": 0.5,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 300,
+                    "color": "#90a4ae",
+                    "opacity": 0.15,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 1,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": false,
+                    },
+                    "resize": true
+                }
+            },
+            "retina_detect": true,
+            "config_demo": {
+                "hide_card": false,
+                "background_color": "#b61924",
+                "background_image": "",
+                "background_position": "50% 50%",
+                "background_repeat": "no-repeat",
+                "background_size": "cover"
+            }
+        };
+        particlesJS('particles', particles);
+        window.ws = new WebSlides();
+    </script>
+    <script defer src="static/js/svg-icons.js"></script>
+</body>
+
+</html>
