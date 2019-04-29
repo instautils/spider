@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>An Introduction to Docker</title>
+    <meta name="description" content="An Introduction to Docker">
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,700,700i%7CMaitree:200,300,400,600,700&amp;subset=latin-ext"
+        rel="stylesheet">
+
+    <link rel="stylesheet" type='text/css' media='all' href="static/css/webslides.css">
+    <link rel="stylesheet" type='text/css' media='all' href="static/css/svg-icons.css">
+    <link rel="stylesheet" type='text/css' media='all' href="static/css/instagraph.css">
+
+    <!-- FAVICONS -->
+    <link rel="shortcut icon" sizes="16x16" href="static/images/favicons/favicon.png">
+    <link rel="shortcut icon" sizes="32x32" href="static/images/favicons/favicon-32.png">
+    <link rel="apple-touch-icon icon" sizes="76x76" href="static/images/favicons/favicon-76.png">
+    <link rel="apple-touch-icon icon" sizes="120x120" href="static/images/favicons/favicon-120.png">
+    <link rel="apple-touch-icon icon" sizes="152x152" href="static/images/favicons/favicon-152.png">
+    <link rel="apple-touch-icon icon" sizes="180x180" href="static/images/favicons/favicon-180.png">
+    <link rel="apple-touch-icon icon" sizes="192x192" href="static/images/favicons/favicon-192.png">
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#333333">
+</head>
+
+<body>
+    <div id="particles"></div>
+
+    <main role="main">
+        <article id="webslides">
+            <section class="bg-black aligncenter">
+                <div class="wrap size-50">
+                    <h1><img class="whitelogo" src="static/images/docker.png"></h1>
+                    <h1>Docker and Containers</h1>
+                    <p class="text-intro">An Introduction to Docker</p>
+                    <p>
+                        By Ahmadreza Zibaei (<a href="https://zibaei.net">https://zibaei.net</a>)
+                        <br />
+                        Special thanks to Prof. Babak Nasiri
+                    </p>
+                </div>
+            </section>
+            <section class="bg-black aligncenter">
+                <div class="wrap size-50">
+                    <h2>A short story of developers problems</h2>
+                    <p class="text-intro">What Problem Does It Really Solve</p>
+                </div>
+            </section>
+            <section class="bg-black aligncenter">
+                <div class="wrap size-50">
+                    <h2>So what is Docker ?</h2>
+                    <p class="text-intro">An Introduction to Docker</p>
+                    <img src="static/images/containers.png">
+                </div>
+            </section>
+            <section class="bg-black">
+                <div class="wrap size-50">
+                    <h2>An Introduction to Docker</h2>
+                    <ul>
+                        <li>Docker is a virtualization platform that allows you to run sandboxed applications on a host
+                            operating system.</li>
+                        <li>Docker follows the same idea of virtualization, but operates very differently.</li>
+                        <li>Docker is container based technology and containers are just user space of the operating
+                            system.</li>
+                        <li>A Dockerized application is just a process that runs on your system.</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="bg-black">
+                <div class="wrap size-50">
+                    <h2>Containers</h2>
+                    <ul>
+                        <li>A container is a standard unit of software that packages up code and all its dependencies so
+                            the application runs quickly and reliably from one computing environment to another.</li>
+                        <li>A Docker container image is a lightweight, standalone, executable package of software that
+                            includes everything needed to run an application: code, runtime, system tools, system
+                            libraries and settings.</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="bg-black">
+                <div class="wrap size-50">
+                    <h2>Images</h2>
+                    <ul>
+                        <li>Images become containers when they run on Docker Engine.</li>
+                        <li>A Docker container image is a lightweight, standalone, executable package of software that
+                            includes everything needed to run an application: code, runtime, system tools, system
+                            libraries and settings.</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="bg-black">
+                <div class="wrap size-50">
+                    <h2>Dockerfile</h2>
+                    <p>The humble but powerful</p>
+                    <code class="dockerfile">
+                        FROM python:3
+                        COPY . .
+                        CMD ["python", "main.py"]
+                    </code>
+                    <style>
+                        code.dockerfile {
+                            display: block;
+                            white-space: pre-wrap;
+                            line-height: 1.8;
+                            text-align: left;
+                        }
+                    </style>
+                </div>
+            </section>
+            <section class="bg-black aligncenter">
+                <div class="wrap size-50">
+                    <h2>Thank you !</h2>
+                    <img src="static/images/say-docker.jpeg" class="img-shadow">
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <script src="static/js/webslides.js"></script>
+    <script>
+        window.ws = new WebSlides();
+    </script>
+    <script defer src="static/js/svg-icons.js"></script>
+</body>
+
+</html>
