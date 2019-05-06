@@ -35,3 +35,15 @@ class Detector:
         face = faces[0]
         description = self.face_descriptor(image, face)
         return self.predict_gender(description)
+    
+    def process_description(self, image):
+        image = cv2.resize(image, (256, 256))
+        dets, scores, _ = self.detector.run(image, 1, -1)
+        if sum(scores) < 0.1:
+            return
+
+        faces = list(dets)
+        faces.sort(cmp=lambda x, y: self.face_size(y) - self.face_size(x))
+        face = faces[0]
+        description = self.face_descriptor(image, face)
+        return description
